@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:layout_weight="1"
+    android:theme="@style/AppTheme">
+
+    <TextView
+        android:id="@+id/tracking_map_recorder_save_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:background="@color/wikitude_orange_light"
+        android:visibility="invisible"
+        android:padding="10dp"
+        android:gravity="center"
+        android:text="@string/tracking_map_save_message"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/transparent">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+            <Button
+                android:visibility="invisible"
+                android:id="@+id/tracking_map_recorder_stop_recording"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/tracking_recorder_stop_recording"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp" />
+        </TableRow>
+    </TableLayout>
+
+    <TableLayout
+        android:id="@+id/tracking_map_recorder_start_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="visible"
+        android:background="@drawable/border">
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tracking_map_recorder_file_name_label"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <EditText
+                android:id="@+id/tracking_map_recorder_file_name"
+                android:inputType="text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" />
+        </TableRow>
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+            <Button
+                android:id="@+id/tracking_map_recorder_start_recording"
+                android:layout_height="wrap_content"
+                android:text="@string/tracking_recorder_start_recording"
+                android:layout_weight="1"/>
+        </TableRow>
+    </TableLayout>
+
+    <TableLayout
+        android:id="@+id/tracking_map_recorder_stop_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        android:background="@drawable/border">
+        <TableRow
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:textColor="@color/primary_dark_material_light"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/tracking_map_recorder_save_successful" />
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <Button
+                android:id="@+id/tracking_map_recorder_discard_recording"
+                android:layout_height="wrap_content"
+                android:text="@string/tracking_map_recorder_discard_button"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"/>
+            <Button
+                android:id="@+id/tracking_map_recorder_share_recording"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:text="@string/tracking_map_recorder_share_button"
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"/>
+        </TableRow>
+    </TableLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+    <item
+        android:id="@+id/tracking_map_recorder_start_button"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_map_recorder"
+        android:title="@string/tracking_map_recorder"
+        app:showAsAction="ifRoom" />
+</menu>
+<!-- From: file:/home/jerrin/WikitudeSDK_NativeAPI_Android_1-3-0_2016-07-11_13-15-33/Examples/NativeSDKExamples/app/src/main/res/menu/menu_main.xml -->

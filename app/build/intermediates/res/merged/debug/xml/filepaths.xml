@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <external-path path="Android/data/com.wikitude.nativesdksampleapp/files" name="files" />
+</paths><!-- From: file:/home/jerrin/WikitudeSDK_NativeAPI_Android_1-3-0_2016-07-11_13-15-33/Examples/NativeSDKExamples/app/src/main/res/xml/filepaths.xml -->

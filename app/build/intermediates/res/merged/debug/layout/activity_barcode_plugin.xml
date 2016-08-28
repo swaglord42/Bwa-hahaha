@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/barcode_plugin_info_field"
+        android:editable="false"
+        android:background="@color/wikitude_orange_light"
+        android:visibility="visible"
+        android:text="@string/barcode_hint"
+        android:gravity="center_horizontal"
+        android:padding="5dp"/>
+
+</LinearLayout>
+<!-- From: file:/home/jerrin/WikitudeSDK_NativeAPI_Android_1-3-0_2016-07-11_13-15-33/Examples/NativeSDKExamples/app/src/main/res/layout/activity_barcode_plugin.xml -->
