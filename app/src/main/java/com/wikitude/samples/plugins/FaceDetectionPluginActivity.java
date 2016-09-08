@@ -6,9 +6,11 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
+import android.view.LayoutInflater;
 import android.view.Surface;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import com.wikitude.WikitudeSDK;
 import com.wikitude.WikitudeSDKStartupConfiguration;
@@ -20,6 +22,7 @@ import com.wikitude.rendering.ExternalRendering;
 import com.wikitude.samples.WikitudeSDKConstants;
 import com.wikitude.samples.rendering.external.CustomSurfaceView;
 import com.wikitude.samples.rendering.external.Driver;
+import com.wikitude.samples.rendering.external.GLRenderer;
 import com.wikitude.samples.rendering.external.GLRendererFaceDetectionPlugin;
 import com.wikitude.tracker.ClientTracker;
 import com.wikitude.tracker.ClientTrackerEventListener;
@@ -38,9 +41,14 @@ public class FaceDetectionPluginActivity extends Activity implements ClientTrack
     private CustomSurfaceView _customSurfaceView;
     private Driver _driver;
     private GLRendererFaceDetectionPlugin _glRenderer;
+    private GLRendererFaceDetectionPlugin _glRenderer1;
+
     private File _cascadeFile;
     private RecognizedTarget _faceTarget = new RecognizedTarget();
     private int _defaultOrientation;
+    private WikitudeCamera2 _wikitudeCamera2;
+    private WikitudeCamera _wikitudeCamera;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,12 +147,17 @@ public class FaceDetectionPluginActivity extends Activity implements ClientTrack
     @Override
     public void onRenderExtensionCreated(final RenderExtension renderExtension_) {
         _glRenderer = new GLRendererFaceDetectionPlugin(renderExtension_);
+
         _customSurfaceView = new CustomSurfaceView(getApplicationContext(), _glRenderer);
         _driver = new Driver(_customSurfaceView, 30);
         setContentView(_customSurfaceView);
         FrameLayout viewHolder = new FrameLayout(getApplicationContext());
         setContentView(viewHolder);
         viewHolder.addView(_customSurfaceView);
+
+        LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
+        LinearLayout barcodeLayout = (LinearLayout) inflater.inflate(R.layout.control, null);
+        viewHolder.addView(barcodeLayout);
     }
 
     @Override

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    <SurfaceView
+        android:id="@+id/camerapreview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        />
+</LinearLayout><!-- From: file:/home/jerrin/WikitudeSDK_NativeAPI_Android_1-3-0_2016-07-11_13-15-33/Examples/NativeSDKExamples/app/src/main/res/layout/face_track.xml -->

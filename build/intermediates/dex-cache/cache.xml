@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/jerrin/WikitudeSDK_NativeAPI_Android_1-3-0_2016-07-11_13-15-33/Examples/NativeSDKExamples/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="/home/jerrin/WikitudeSDK_NativeAPI_Android_1-3-0_2016-07-11_13-15-33/Examples/NativeSDKExamples/app/build/intermediates/pre-dexed/debug/classes-c1b7fcd8b971bd18caa50ba5c4c5b8de352e1d4d.jar" />
+    </item>
+    <item
+        jar="/home/jerrin/WikitudeSDK_NativeAPI_Android_1-3-0_2016-07-11_13-15-33/Examples/NativeSDKExamples/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="/home/jerrin/WikitudeSDK_NativeAPI_Android_1-3-0_2016-07-11_13-15-33/Examples/NativeSDKExamples/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.1-c770e34f2079f82c48e15ca2b175ef14871f1ded.jar" />
+    </item>
+    <item
+        jar="/home/jerrin/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="/home/jerrin/WikitudeSDK_NativeAPI_Android_1-3-0_2016-07-11_13-15-33/Examples/NativeSDKExamples/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.1-7ee2cd68a3284929087292e6de15352fc2bf24d8.jar" />
+    </item>
+    <item
+        jar="/home/jerrin/WikitudeSDK_NativeAPI_Android_1-3-0_2016-07-11_13-15-33/Examples/NativeSDKExamples/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
+        <dex dex="/home/jerrin/WikitudeSDK_NativeAPI_Android_1-3-0_2016-07-11_13-15-33/Examples/NativeSDKExamples/app/build/intermediates/pre-dexed/debug/classes-da8f82ca5923ac3b135ff0b7fb136c707eb14628.jar" />
+    </item>
+    <item
+        jar="/home/jerrin/WikitudeSDK_NativeAPI_Android_1-3-0_2016-07-11_13-15-33/Examples/NativeSDKExamples/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="/home/jerrin/WikitudeSDK_NativeAPI_Android_1-3-0_2016-07-11_13-15-33/Examples/NativeSDKExamples/app/build/intermediates/pre-dexed/debug/classes-85697999ebce4cb22b7f6cfb421251be90714fea.jar" />
+    </item>
+    <item
+        jar="/home/jerrin/WikitudeSDK_NativeAPI_Android_1-3-0_2016-07-11_13-15-33/Examples/NativeSDKExamples/app/build/intermediates/exploded-aar/wikitudesdk/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="f74c04fbac0c1603e12f8ec632f42f4047113b88">
+        <dex dex="/home/jerrin/WikitudeSDK_NativeAPI_Android_1-3-0_2016-07-11_13-15-33/Examples/NativeSDKExamples/app/build/intermediates/pre-dexed/debug/classes-2c9990838eb3474771308bbab76d93b1e51ad7ab.jar" />
+    </item>
+    <item
+        jar="/home/jerrin/WikitudeSDK_NativeAPI_Android_1-3-0_2016-07-11_13-15-33/Examples/NativeSDKExamples/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
+        <dex dex="/home/jerrin/WikitudeSDK_NativeAPI_Android_1-3-0_2016-07-11_13-15-33/Examples/NativeSDKExamples/app/build/intermediates/pre-dexed/debug/classes-5a0a0fe0bc86ddca48ee399e4ef2534dc986fcae.jar" />
+    </item>
+
+</items>
