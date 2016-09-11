@@ -187,7 +187,7 @@ public class FaceDetectionPluginActivity extends Activity implements ClientTrack
 
     @Override
     public void onExtendedTrackingQualityUpdate(final Tracker tracker_, final String targetName_, final int oldTrackingQuality_, final int newTrackingQuality_) {
-
+`                                                                                                                                                                                                                                                                                                                                                                                           zz
     }
 
     private native void initNative(String casecadeFilePath);
