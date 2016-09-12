@@ -1,5 +1,6 @@
 package com.wikitude.samples;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.wikitude.nativesdksampleapp.R;
+import com.wikitude.samples.HelpActivity;
 import com.wikitude.samples.plugins.FaceDetectionPluginActivity;
 
 import java.util.HashMap;
@@ -17,8 +19,8 @@ import java.util.Map;
 /**
  * Created by manu on 12/9/16.
  */
-public class HelpActivity {
-    //    @Override
+public class HelpActivity extends AppCompatActivity{
+    @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_help);

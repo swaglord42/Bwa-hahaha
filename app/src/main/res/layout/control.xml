@@ -23,29 +23,35 @@
             <!--android:textColor="#00000000"-->
             <!--android:textSize="20sp"-->
             <!--android:textStyle="bold" />-->
-        <Button
-            android:id="@+id/score"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:textColor="#ff333333"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:text=" Score:0 "
-            android:layout_margin="10dp" />
+        <!--<Button-->
+            <!--android:id="@+id/score"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:padding="20dp"-->
+            <!--android:textColor="#ff333333"-->
+            <!--android:textSize="20sp"-->
+            <!--android:textStyle="bold"-->
+            <!--android:text=" Score:0 "-->
+            <!--android:layout_margin="10dp" />-->
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Timer"
-        android:textColor="#00000000"/>
+    <!--<TextView-->
+        <!--android:id="@+id/textView1"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:text="Timer"-->
+        <!--android:textColor="#00000000"/>-->
 
         <!--android:textColor="#ffffffff"-->
         <!--android:textSize="26sp"-->
         <!--android:textStyle="bold" />-->
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imagview"
+        android:layout_weight="1" />
 
     <Button
         android:id="@+id/takepicture"

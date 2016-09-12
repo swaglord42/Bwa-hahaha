@@ -31,7 +31,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.wikitude.samples.MainActivity"
-            android:label="@string/app_name" >
+            android:label="Bwa-hahaha" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -87,6 +87,7 @@
             android:name="com.wikitude.samples.recorder.TrackingMapRecorderActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="fullSensor" />
+
 
         <provider
             android:name="android.support.v4.content.FileProvider"
