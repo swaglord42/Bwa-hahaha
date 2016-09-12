@@ -64,4 +64,6 @@
     </string-array>
     <string name="title_activity_custom_camera">CustomCameraActivity</string>
 
+    <string name="help_info">Shoot em all.Yes. Try to shoot as much faces as you can in the time that you are given</string>
+
 </resources>

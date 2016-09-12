@@ -8,8 +8,13 @@ import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Surface;
+import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.wikitude.WikitudeSDK;
@@ -33,27 +38,29 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class FaceDetectionPluginActivity extends Activity implements ClientTrackerEventListener, ExternalRendering {
+public class FaceDetectionPluginActivity extends Activity implements ClientTrackerEventListener, ExternalRendering, View.OnClickListener {
 
     private static final String TAG = "FaceDetectionPlugin";
-
+    ImageView image;
     private WikitudeSDK _wikitudeSDK;
     private CustomSurfaceView _customSurfaceView;
     private Driver _driver;
     private GLRendererFaceDetectionPlugin _glRenderer;
     private GLRendererFaceDetectionPlugin _glRenderer1;
-
+    Button kill;
     private File _cascadeFile;
     private RecognizedTarget _faceTarget = new RecognizedTarget();
     private int _defaultOrientation;
     private WikitudeCamera2 _wikitudeCamera2;
     private WikitudeCamera _wikitudeCamera;
-
+    int f=1;
+    int gamescore=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         _wikitudeSDK = new WikitudeSDK(this);
+
         WikitudeSDKStartupConfiguration startupConfiguration = new WikitudeSDKStartupConfiguration(WikitudeSDKConstants.WIKITUDE_SDK_KEY, CameraSettings.CameraPosition.BACK, CameraSettings.CameraFocusMode.CONTINUOUS);
         _wikitudeSDK.onCreate(getApplicationContext(), this, startupConfiguration);
         ClientTracker tracker = _wikitudeSDK.getTrackerManager().create2dClientTracker("file:///android_asset/magazine.wtc");
@@ -133,7 +140,25 @@ public class FaceDetectionPluginActivity extends Activity implements ClientTrack
     public void onFaceDetected(float[] modelViewMatrix) {
         _faceTarget.setViewMatrix(modelViewMatrix);
         _glRenderer.setCurrentlyRecognizedFace(_faceTarget);
+
+    public void onClick(View v) {
+
+        Animation hypejump = AnimationUtils.loadAnimation(this, R.anim.animation_xml);
+        hypejump.setRepeatCount(Animation.INFINITE);
+        if (f % 2 == 0) {
+            image.setVisibility(View.VISIBLE);
+            ++gamescore;
+            image.startAnimation(hypejump);
+            image.clearAnimation();
+        } else {
+            image.setVisibility(View.INVISIBLE);
+        }
+        f++;
+
     }
+
+
+
 
     public void onFaceLost() {
         _glRenderer.setCurrentlyRecognizedFace(null);
@@ -157,6 +182,10 @@ public class FaceDetectionPluginActivity extends Activity implements ClientTrack
 
         LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
         LinearLayout barcodeLayout = (LinearLayout) inflater.inflate(R.layout.control, null);
+        kill = (Button)barcodeLayout.findViewById(R.id.takepicture);
+        kill.setOnClickListener(this);
+        image = (ImageView)barcodeLayout.findViewById(R.id.imagview);
+        image.setVisibility(View.INVISIBLE);
         viewHolder.addView(barcodeLayout);
     }
 
@@ -187,9 +216,28 @@ public class FaceDetectionPluginActivity extends Activity implements ClientTrack
 
     @Override
     public void onExtendedTrackingQualityUpdate(final Tracker tracker_, final String targetName_, final int oldTrackingQuality_, final int newTrackingQuality_) {
-`                                                                                                                                                                                                                                                                                                                                                                                           zz
+
     }
 
     private native void initNative(String casecadeFilePath);
     private native void setIsBaseOrientationLandscape(boolean isBaseOrientationLandscape_);
+
+//    @Override
+//    public void onClick(View v) {
+//
+//        Animation hypejump = AnimationUtils.loadAnimation(this,R.anim.animation_xml);
+//        hypejump.setRepeatCount(Animation.INFINITE);
+//        if(f%2==0)
+//        {
+//            image.setVisibility(View.VISIBLE);
+//
+//            image.startAnimation(hypejump);
+//            image.clearAnimation();
+//        }
+//        else{
+//            image.setVisibility(View.INVISIBLE);
+//        }
+//        f++;
+//
+//    }
 }

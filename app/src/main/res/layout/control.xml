@@ -60,7 +60,8 @@
         android:text=" Shoot!! "
         android:layout_gravity="bottom"
         android:layout_margin="10dp"
-        android:layout_weight="0.10" />
+        android:layout_weight="0.10"
+        android:onClick="onClick"/>
 </LinearLayout>
 
 <!--<Button-->
