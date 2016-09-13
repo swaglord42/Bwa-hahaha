@@ -2,6 +2,7 @@ package com.wikitude.samples.plugins;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,6 +25,7 @@ import com.wikitude.common.rendering.RenderExtension;
 import com.wikitude.common.tracking.RecognizedTarget;
 import com.wikitude.nativesdksampleapp.R;
 import com.wikitude.rendering.ExternalRendering;
+import com.wikitude.samples.ScoreView;
 import com.wikitude.samples.WikitudeSDKConstants;
 import com.wikitude.samples.rendering.external.CustomSurfaceView;
 import com.wikitude.samples.rendering.external.Driver;
@@ -37,6 +39,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import android.os.CountDownTimer;
+import android.widget.TextView;
 
 public class FaceDetectionPluginActivity extends Activity implements ClientTrackerEventListener, ExternalRendering, View.OnClickListener {
 
@@ -48,17 +52,22 @@ public class FaceDetectionPluginActivity extends Activity implements ClientTrack
     private GLRendererFaceDetectionPlugin _glRenderer;
     private GLRendererFaceDetectionPlugin _glRenderer1;
     Button kill;
+    int gamescore=0;
     private File _cascadeFile;
     private RecognizedTarget _faceTarget = new RecognizedTarget();
     private int _defaultOrientation;
     private WikitudeCamera2 _wikitudeCamera2;
     private WikitudeCamera _wikitudeCamera;
-    int f=1;
-    int gamescore=0;
+    int f=1;boolean flag = false;
+    LayoutInflater inflater;
+    LinearLayout barcodeLayout;
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        textView = (TextView)findViewById(R.id.textView2);
+        kill = (Button)findViewById(R.id.takepicture);
         _wikitudeSDK = new WikitudeSDK(this);
 
         WikitudeSDKStartupConfiguration startupConfiguration = new WikitudeSDKStartupConfiguration(WikitudeSDKConstants.WIKITUDE_SDK_KEY, CameraSettings.CameraPosition.BACK, CameraSettings.CameraFocusMode.CONTINUOUS);
@@ -97,6 +106,24 @@ public class FaceDetectionPluginActivity extends Activity implements ClientTrack
         if (_defaultOrientation == Configuration.ORIENTATION_LANDSCAPE) {
             setIsBaseOrientationLandscape(true);
         }
+        final CountDownTimer timer = new CountDownTimer(30000,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+            textView.setText("Time Remaining: "+millisUntilFinished/1000);
+            }
+
+            @Override
+            public void onFinish() {
+            textView.setText("TIME OVER !!");
+                done();
+            }
+        }.start();
+    }
+//    @Override
+    public void done() {
+        Intent i = new Intent(this,ScoreView.class);
+        i.putExtra("Score",gamescore);
+        startActivity(i);
     }
 
     @Override
@@ -140,25 +167,9 @@ public class FaceDetectionPluginActivity extends Activity implements ClientTrack
     public void onFaceDetected(float[] modelViewMatrix) {
         _faceTarget.setViewMatrix(modelViewMatrix);
         _glRenderer.setCurrentlyRecognizedFace(_faceTarget);
-
-    public void onClick(View v) {
-
-        Animation hypejump = AnimationUtils.loadAnimation(this, R.anim.animation_xml);
-        hypejump.setRepeatCount(Animation.INFINITE);
-        if (f % 2 == 0) {
-            image.setVisibility(View.VISIBLE);
-            ++gamescore;
-            image.startAnimation(hypejump);
-            image.clearAnimation();
-        } else {
-            image.setVisibility(View.INVISIBLE);
-        }
-        f++;
+        flag = true;
 
     }
-
-
-
 
     public void onFaceLost() {
         _glRenderer.setCurrentlyRecognizedFace(null);
@@ -180,8 +191,8 @@ public class FaceDetectionPluginActivity extends Activity implements ClientTrack
         setContentView(viewHolder);
         viewHolder.addView(_customSurfaceView);
 
-        LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
-        LinearLayout barcodeLayout = (LinearLayout) inflater.inflate(R.layout.control, null);
+        inflater = LayoutInflater.from(getApplicationContext());
+        barcodeLayout = (LinearLayout) inflater.inflate(R.layout.control, null);
         kill = (Button)barcodeLayout.findViewById(R.id.takepicture);
         kill.setOnClickListener(this);
         image = (ImageView)barcodeLayout.findViewById(R.id.imagview);
@@ -196,17 +207,18 @@ public class FaceDetectionPluginActivity extends Activity implements ClientTrack
 
     @Override
     public void onTrackerFinishedLoading(final ClientTracker clientTracker_, final String trackerFilePath_) {
-
+        flag = true;
     }
 
     @Override
     public void onTargetRecognized(final Tracker tracker_, final String targetName_) {
-
+        flag = true;
     }
 
     @Override
     public void onTracking(final Tracker tracker_, final RecognizedTarget recognizedTarget_) {
         _glRenderer.setCurrentlyRecognizedTarget(recognizedTarget_);
+        flag = true;
     }
 
     @Override
@@ -222,22 +234,24 @@ public class FaceDetectionPluginActivity extends Activity implements ClientTrack
     private native void initNative(String casecadeFilePath);
     private native void setIsBaseOrientationLandscape(boolean isBaseOrientationLandscape_);
 
-//    @Override
-//    public void onClick(View v) {
-//
-//        Animation hypejump = AnimationUtils.loadAnimation(this,R.anim.animation_xml);
-//        hypejump.setRepeatCount(Animation.INFINITE);
-//        if(f%2==0)
-//        {
-//            image.setVisibility(View.VISIBLE);
-//
-//            image.startAnimation(hypejump);
-//            image.clearAnimation();
-//        }
-//        else{
-//            image.setVisibility(View.INVISIBLE);
-//        }
-//        f++;
-//
-//    }
+    @Override
+    public void onClick(View v) {
+
+        Animation hypejump = AnimationUtils.loadAnimation(this,R.anim.animation_xml);
+        hypejump.setRepeatCount(Animation.INFINITE);
+        if(flag && f%2==0)
+        {
+            image.setVisibility(View.VISIBLE);
+            gamescore++;
+            image.startAnimation(hypejump);
+            image.clearAnimation();
+        }
+        else{
+            image.setVisibility(View.INVISIBLE);
+        }
+        if (flag)
+            f++;
+        flag = false;
+
+    }
 }

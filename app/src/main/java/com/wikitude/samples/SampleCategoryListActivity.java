@@ -39,8 +39,8 @@ public class SampleCategoryListActivity extends AppCompatActivity implements Ada
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
-        _listView = (ListView) findViewById(R.id.sample_list);
+//        setContentView(R.layout.activity_main);
+//        _listView = (ListView) findViewById(R.id.sample_list);
 
         ArrayAdapter<CharSequence> adapter = null;
         switch (getIntent().getExtras().getInt(EXTRAS_CATEGORY_POSITION)) {
