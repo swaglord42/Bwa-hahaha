@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -46,7 +49,7 @@ import java.util.concurrent.TimeUnit;
 import android.os.CountDownTimer;
 import android.widget.TextView;
 
-public class FaceDetectionPluginActivity extends Activity implements ClientTrackerEventListener, ExternalRendering, View.OnClickListener {
+public class FaceDetectionPluginActivity extends AppCompatActivity implements ClientTrackerEventListener, ExternalRendering, View.OnClickListener {
 
     private static final String TAG = "FaceDetectionPlugin";
     ImageView image;
@@ -67,7 +70,7 @@ public class FaceDetectionPluginActivity extends Activity implements ClientTrack
     LinearLayout barcodeLayout;
     TextView textView;
     String timerValue="Time left:";
-
+    MediaPlayer mp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +81,7 @@ public class FaceDetectionPluginActivity extends Activity implements ClientTrack
         ClientTracker tracker = _wikitudeSDK.getTrackerManager().create2dClientTracker("file:///android_asset/magazine.wtc");
         tracker.registerTrackerEventListener(this);
         _wikitudeSDK.getPluginManager().registerNativePlugins("wikitudePlugins", "face_detection");
-
+        mp = MediaPlayer.create(this, R.raw.gun_shot1);
         try {
             // load cascade file from application resources
             InputStream is = getResources().openRawResource(R.raw.high_database);
@@ -205,7 +208,7 @@ public class FaceDetectionPluginActivity extends Activity implements ClientTrack
         kill.setOnClickListener(this);
         image = (ImageView)barcodeLayout.findViewById(R.id.imagview);
         image.setVisibility(View.INVISIBLE);
-      //  textView=(TextView)barcodeLayout.findViewById(R.id.textView2);
+        textView=(TextView)barcodeLayout.findViewById(R.id.textView2);
         viewHolder.addView(barcodeLayout);
     }
     public class CounterClass extends CountDownTimer {
@@ -219,7 +222,7 @@ public class FaceDetectionPluginActivity extends Activity implements ClientTrack
             //String hms = String.format("%02d", TimeUnit.MILLISECONDS.toSeconds(millis);
             //textView.setText(timerValue+millisUntilFinished/1000);
             //System.out.println(hms);
-           // textView.setText("Time left:"+s);
+            textView.setText("Time left:"+s);
         }
         @Override
         public void onFinish() {
@@ -269,9 +272,11 @@ public class FaceDetectionPluginActivity extends Activity implements ClientTrack
 
     @Override
     public void onClick(View v) {
+        mp.start();
         Context context=this;
         Vibrator vibrator = (Vibrator)this.getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(250);
+
         Animation hypejump = AnimationUtils.loadAnimation(this,R.anim.animation_xml);
         hypejump.setRepeatCount(Animation.INFINITE);
         if(flag && f%2==0)

@@ -12,44 +12,20 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <!--<TextView-->
-            <!--android:id="@+id/score"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="70dp"-->
-            <!--android:layout_weight="1"-->
-            <!--android:gravity="center|right"-->
-            <!--android:paddingRight="20dp"-->
-            <!--android:text="Score: 0"-->
-            <!--android:textColor="#00000000"-->
-            <!--android:textSize="20sp"-->
-            <!--android:textStyle="bold" />-->
-        <!--<Button-->
-            <!--android:id="@+id/score"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:padding="20dp"-->
-            <!--android:textColor="#ff333333"-->
-            <!--android:textSize="20sp"-->
-            <!--android:textStyle="bold"-->
-            <!--android:text=" Score:0 "-->
-            <!--android:layout_margin="10dp" />-->
-
-
-
         <!--THIS IS REQUIRED-->
         <!---->
-        <!--<TextView-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
-            <!--android:text="Large Text"-->
-            <!--android:id="@+id/textView2"-->
-            <!--android:layout_margin="5dp"-->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/textView2"
+            android:layout_margin="5dp"
 
-            <!--android:layout_weight="1"-->
-            <!--android:layout_marginTop="50dp"-->
-            <!--android:layout_gravity="top" />-->
-        <!---->
+            android:layout_weight="1"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="top" />
+
 
 
 
@@ -57,23 +33,13 @@
 
     </LinearLayout>
 
-    <!--<TextView-->
-        <!--android:id="@+id/textView1"-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center_horizontal"-->
-        <!--android:text="Timer"-->
-        <!--android:textColor="#00000000"/>-->
 
-        <!--android:textColor="#ffffffff"-->
-        <!--android:textSize="26sp"-->
-        <!--android:textStyle="bold" />-->
 
     <ImageView
         android:layout_width="266dp"
         android:layout_height="350dp"
         android:id="@+id/imagview"
-        android:src="@drawable/bloood2"
+        android:src="@drawable/blooodnew"
         />
 
     <Button
