@@ -33,12 +33,28 @@
             <!--android:textStyle="bold"-->
             <!--android:text=" Score:0 "-->
             <!--android:layout_margin="10dp" />-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
-            android:id="@+id/textView2" />
+
+
+
+        <!--THIS IS REQUIRED-->
+        <!---->
+        <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+            <!--android:text="Large Text"-->
+            <!--android:id="@+id/textView2"-->
+            <!--android:layout_margin="5dp"-->
+
+            <!--android:layout_weight="1"-->
+            <!--android:layout_marginTop="50dp"-->
+            <!--android:layout_gravity="top" />-->
+        <!---->
+
+
+
+
+
     </LinearLayout>
 
     <!--<TextView-->
@@ -54,10 +70,11 @@
         <!--android:textStyle="bold" />-->
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="266dp"
+        android:layout_height="350dp"
         android:id="@+id/imagview"
-        android:layout_weight="1" />
+        android:src="@drawable/bloood2"
+        />
 
     <Button
         android:id="@+id/takepicture"

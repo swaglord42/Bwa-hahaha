@@ -17,6 +17,8 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.os.Vibrator;
+
 
 import com.wikitude.WikitudeSDK;
 import com.wikitude.WikitudeSDKStartupConfiguration;
@@ -39,6 +41,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.concurrent.TimeUnit;
+
 import android.os.CountDownTimer;
 import android.widget.TextView;
 
@@ -62,12 +66,11 @@ public class FaceDetectionPluginActivity extends Activity implements ClientTrack
     LayoutInflater inflater;
     LinearLayout barcodeLayout;
     TextView textView;
+    String timerValue="Time left:";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        textView = (TextView)findViewById(R.id.textView2);
-        kill = (Button)findViewById(R.id.takepicture);
         _wikitudeSDK = new WikitudeSDK(this);
 
         WikitudeSDKStartupConfiguration startupConfiguration = new WikitudeSDKStartupConfiguration(WikitudeSDKConstants.WIKITUDE_SDK_KEY, CameraSettings.CameraPosition.BACK, CameraSettings.CameraFocusMode.CONTINUOUS);
@@ -106,24 +109,29 @@ public class FaceDetectionPluginActivity extends Activity implements ClientTrack
         if (_defaultOrientation == Configuration.ORIENTATION_LANDSCAPE) {
             setIsBaseOrientationLandscape(true);
         }
-        final CountDownTimer timer = new CountDownTimer(30000,1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-            textView.setText("Time Remaining: "+millisUntilFinished/1000);
-            }
+//        final CountDownTimer timer = new CountDownTimer(30000,1000) {
+//            @Override
+//            public void onTick(long millisUntilFinished) {
+//            textView.setText("Time Remaining:"+millisUntilFinished/1000);
+//            }
+//
+//            @Override
+//            public void onFinish() {
+//            textView.setText("TIME OVER !!");
+//                done();
+//            }
+//        }.start();
 
-            @Override
-            public void onFinish() {
-            textView.setText("TIME OVER !!");
-                done();
-            }
-        }.start();
-    }
-//    @Override
-    public void done() {
-        Intent i = new Intent(this,ScoreView.class);
-        i.putExtra("Score",gamescore);
-        startActivity(i);
+//    public void done() {
+//        Intent i = new Intent(this,ScoreView.class);
+//        i.putExtra("Score",gamescore);
+//        startActivity(i);
+//    }
+
+        // declared an object of CounterClass which is a class that extends the CountDownTimer class
+
+        final CounterClass timer = new CounterClass(30000,1000);
+        timer.start();
     }
 
     @Override
@@ -197,7 +205,32 @@ public class FaceDetectionPluginActivity extends Activity implements ClientTrack
         kill.setOnClickListener(this);
         image = (ImageView)barcodeLayout.findViewById(R.id.imagview);
         image.setVisibility(View.INVISIBLE);
+      //  textView=(TextView)barcodeLayout.findViewById(R.id.textView2);
         viewHolder.addView(barcodeLayout);
+    }
+    public class CounterClass extends CountDownTimer {
+        public CounterClass(long millisInFuture,long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+        @Override
+        public void onTick(long millisUntilFinished) {
+            long millis = millisUntilFinished;
+            String s = String.valueOf(millis/1000);
+            //String hms = String.format("%02d", TimeUnit.MILLISECONDS.toSeconds(millis);
+            //textView.setText(timerValue+millisUntilFinished/1000);
+            //System.out.println(hms);
+           // textView.setText("Time left:"+s);
+        }
+        @Override
+        public void onFinish() {
+            done();
+        }
+    }
+
+    public void done(){
+        Intent i = new Intent(this,ScoreView.class);
+        i.putExtra("Score",gamescore);
+        startActivity(i);
     }
 
     @Override
@@ -236,15 +269,18 @@ public class FaceDetectionPluginActivity extends Activity implements ClientTrack
 
     @Override
     public void onClick(View v) {
-
+        Context context=this;
+        Vibrator vibrator = (Vibrator)this.getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator.vibrate(250);
         Animation hypejump = AnimationUtils.loadAnimation(this,R.anim.animation_xml);
         hypejump.setRepeatCount(Animation.INFINITE);
         if(flag && f%2==0)
         {
             image.setVisibility(View.VISIBLE);
-            gamescore++;
             image.startAnimation(hypejump);
             image.clearAnimation();
+            gamescore++;
+
         }
         else{
             image.setVisibility(View.INVISIBLE);

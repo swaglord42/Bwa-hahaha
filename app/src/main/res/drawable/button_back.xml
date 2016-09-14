@@ -3,13 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <gradient
-        android:startColor="#ff003333"
-        android:endColor="#ff009966"
+        android:startColor="#FF7D40"
+        android:endColor="#CD0000"
         android:angle="90"
         />
     <corners android:radius="20dp" />
     <stroke
-        android:color="#ff003333"
+        android:color="#FF7D40"
         android:width="2dp"
         />
 </shape>

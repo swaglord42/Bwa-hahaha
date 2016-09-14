@@ -22,8 +22,8 @@
     android:background="@drawable/app_back"
     android:padding="10dp" >
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:background="@drawable/app_back"
         android:gravity="center">
         <!--<ImageView-->
@@ -53,18 +53,19 @@
             android:layout_centerHorizontal="true"
             android:padding="20dp"
             android:text="Bwa-hahaha"
-            android:textColor="#ffffffff"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textColor="#8B0000"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            android:fontFamily="casual"/>
 
         <!--</TextView>-->
             <!--android:layout_below="@id/operator2"-->
-            android:layout_centerHorizontal="true"
-            android:padding="20dp"
-            android:text="@string/app_name"
-            android:textColor="#ffffffff"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:padding="20dp"-->
+            <!--android:text="@string/app_name"-->
+            <!--android:textColor="#ffffffff"-->
+            <!--android:textSize="20sp"-->
+            <!--android:textStyle="bold" />-->
 
         <Button
             android:id="@+id/play_btn"

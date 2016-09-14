@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Bwa-hahaha</string>
-
+    <string name="timer">Time Left</string>
     <string-array name="sample_categories">
         <item>1 Client Recognition</item>
         <item>2 Cloud Recognition</item>
