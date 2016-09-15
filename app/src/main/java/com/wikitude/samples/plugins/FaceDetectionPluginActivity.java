@@ -374,32 +374,35 @@ public class FaceDetectionPluginActivity extends AppCompatActivity implements Cl
         Context context=this;
         Vibrator vibrator = (Vibrator)this.getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(250);
+                Animation hypejump = AnimationUtils.loadAnimation(this,R.anim.animation_xml);
+                hypejump.setRepeatCount(Animation.INFINITE);
+                if(flag && f%2==0)
+                {
+                    image.setVisibility(View.VISIBLE);
+                    image.startAnimation(hypejump);
+                    image.clearAnimation();
+                    gamescore++;
 
-        Animation hypejump = AnimationUtils.loadAnimation(this,R.anim.animation_xml);
-        hypejump.setRepeatCount(Animation.INFINITE);
-        if(flag && f%2==0)
-        {
-            image.setVisibility(View.VISIBLE);
-            image.startAnimation(hypejump);
-            image.clearAnimation();
-            gamescore++;
+                    //before the line in which the score textview is updated to zero to show that the user has entered a wrong answer
 
-            //before the line in which the score textview is updated to zero to show that the user has entered a wrong answer
+        //            setHighScore();
 
-//            setHighScore();
-
-        }
-        else{
-            image.setVisibility(View.INVISIBLE);
-        }
+                }
+                else{
+                    image.setVisibility(View.INVISIBLE);
+                }
         if (flag)
             f++;
         flag = false;
+            }
+        }
+//        if (flag)
+//            f++;
+//        flag = false;
 
-    }
+
 
 //    protected void onDestroy(){
 //        setHighScore();
 //        super.onDestroy();
 //    }
-}
