@@ -36,11 +36,7 @@ public class MainActivity extends AppCompatActivity {
             mp.start();
         }
         mp1 = MediaPlayer.create(this,R.raw.gun_cock);
-//        playBtn.setOnClickListener(this);
-//        helpBtn.setOnClickListener(this);
-//        highBtn.setOnClickListener(this);
-//        final Intent intent = new Intent( this, FaceDetectionPluginActivity.class );
-//        startActivity(intent);
+
     }
 
 //    @Override

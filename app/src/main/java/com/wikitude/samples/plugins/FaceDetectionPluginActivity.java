@@ -79,12 +79,13 @@ public class FaceDetectionPluginActivity extends AppCompatActivity implements Cl
     private int _defaultOrientation;
     private WikitudeCamera2 _wikitudeCamera2;
     private WikitudeCamera _wikitudeCamera;
-    int f=1;boolean flag = false; int index=0;
+    int f=1;boolean flag = false; int index=0,index3=0;
     LayoutInflater inflater;
     LinearLayout barcodeLayout;
     TextView textView;
     String timerValue="Time left:";
     MediaPlayer mp;
+    int index2 = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,24 +128,6 @@ public class FaceDetectionPluginActivity extends AppCompatActivity implements Cl
         if (_defaultOrientation == Configuration.ORIENTATION_LANDSCAPE) {
             setIsBaseOrientationLandscape(true);
         }
-//        final CountDownTimer timer = new CountDownTimer(30000,1000) {
-//            @Override
-//            public void onTick(long millisUntilFinished) {
-//            textView.setText("Time Remaining:"+millisUntilFinished/1000);
-//            }
-//
-//            @Override
-//            public void onFinish() {
-//            textView.setText("TIME OVER !!");
-//                done();
-//            }
-//        }.start();
-
-//    public void done() {
-//        Intent i = new Intent(this,ScoreView.class);
-//        i.putExtra("Score",gamescore);
-//        startActivity(i);
-//    }
 
         // declared an object of CounterClass which is a class that extends the CountDownTimer class
 
@@ -285,11 +268,17 @@ public class FaceDetectionPluginActivity extends AppCompatActivity implements Cl
             List<Score> scoreStrings = new ArrayList<Score>();
             String[] exScores = scores.split("\\|");
             for(String eSc : exScores){
+
+
+
+
                 String[] parts = eSc.split(" - ");
-                if(index<parts.length) {
+                if(index<parts.length-1) {
                     scoreStrings.add(new Score(parts[index], Integer.parseInt(parts[++index])));
                 }
             }
+
+
 
             Score newScore = new Score(dateOutput, exScore);
             scoreStrings.add(newScore);

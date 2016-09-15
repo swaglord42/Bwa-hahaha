@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/SplashImageView"
         android:layout_gravity="center"
-        android:src="@drawable/rsz_zykos"
+        android:src="@drawable/rsz_bluegradient_zykos"
         >
     </ImageView>
 </LinearLayout>

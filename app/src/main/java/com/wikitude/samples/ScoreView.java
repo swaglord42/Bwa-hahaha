@@ -26,12 +26,7 @@ public class ScoreView extends AppCompatActivity {
         Button button = (Button) findViewById(R.id.button);
         mp = MediaPlayer.create(this,R.raw.bwahaha);
         mp.start();
-//        button.setOnClickListener(new View.OnClickListener(){
-//            public void onClick(View view) {
-//               final Intent i = new Intent(this , MainActivity.class);
-//                startActivity(i);
-//            }
-//        });
+
     }
         //@Override
         public void goBack(View view){
