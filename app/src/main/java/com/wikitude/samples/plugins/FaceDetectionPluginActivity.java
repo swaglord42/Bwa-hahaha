@@ -79,12 +79,13 @@ public class FaceDetectionPluginActivity extends AppCompatActivity implements Cl
     private int _defaultOrientation;
     private WikitudeCamera2 _wikitudeCamera2;
     private WikitudeCamera _wikitudeCamera;
-    int f=1;boolean flag = false;
+    int f=1;boolean flag = false; int index=0;
     LayoutInflater inflater;
     LinearLayout barcodeLayout;
     TextView textView;
     String timerValue="Time left:";
     MediaPlayer mp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -285,7 +286,9 @@ public class FaceDetectionPluginActivity extends AppCompatActivity implements Cl
             String[] exScores = scores.split("\\|");
             for(String eSc : exScores){
                 String[] parts = eSc.split(" - ");
-                scoreStrings.add(new Score(parts[0], Integer.parseInt(parts[1])));
+                if(index<parts.length) {
+                    scoreStrings.add(new Score(parts[index], Integer.parseInt(parts[++index])));
+                }
             }
 
             Score newScore = new Score(dateOutput, exScore);
