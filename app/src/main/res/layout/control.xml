@@ -50,6 +50,11 @@
         android:background="@drawable/button_back"
         android:padding="20dp"
         android:textColor="#ff333333"
+
+        android:width="112dp"
+        android:height="100dp"
+        android:radius="93sp"
+
         android:textSize="20sp"
         android:textStyle="bold"
         android:text=" Shoot!! "

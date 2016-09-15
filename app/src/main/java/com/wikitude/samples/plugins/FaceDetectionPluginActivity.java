@@ -40,6 +40,16 @@ import com.wikitude.tracker.ClientTracker;
 import com.wikitude.tracker.ClientTrackerEventListener;
 import com.wikitude.tracker.Tracker;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
+import android.content.SharedPreferences;
+
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -50,6 +60,10 @@ import android.os.CountDownTimer;
 import android.widget.TextView;
 
 public class FaceDetectionPluginActivity extends AppCompatActivity implements ClientTrackerEventListener, ExternalRendering, View.OnClickListener {
+
+    private SharedPreferences gamePrefs;
+    public static final String GAME_PREFS = "ArithmeticFile";
+
 
     private static final String TAG = "FaceDetectionPlugin";
     ImageView image;
@@ -138,6 +152,15 @@ public class FaceDetectionPluginActivity extends AppCompatActivity implements Cl
     }
 
     @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        //save state
+
+        int exScore = getScore();
+        savedInstanceState.putInt("score", exScore);
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         _wikitudeSDK.onResume();
@@ -155,6 +178,7 @@ public class FaceDetectionPluginActivity extends AppCompatActivity implements Cl
 
     @Override
     protected void onDestroy() {
+        setHighScore();
         super.onDestroy();
         _wikitudeSDK.onDestroy();
     }
@@ -210,6 +234,9 @@ public class FaceDetectionPluginActivity extends AppCompatActivity implements Cl
         image.setVisibility(View.INVISIBLE);
         textView=(TextView)barcodeLayout.findViewById(R.id.textView2);
         viewHolder.addView(barcodeLayout);
+
+        gamePrefs = getSharedPreferences(GAME_PREFS, 0);
+
     }
     public class CounterClass extends CountDownTimer {
         public CounterClass(long millisInFuture,long countDownInterval) {
@@ -231,9 +258,88 @@ public class FaceDetectionPluginActivity extends AppCompatActivity implements Cl
     }
 
     public void done(){
+        //called after the timer finishes counting
+        setHighScore();
+
         Intent i = new Intent(this,ScoreView.class);
         i.putExtra("Score",gamescore);
         startActivity(i);
+    }
+
+
+    private void setHighScore(){
+        //set high score
+        int exScore = getScore();
+
+
+
+
+        if(exScore>0) {
+
+            SharedPreferences.Editor scoreEdit = gamePrefs.edit();
+            DateFormat dateForm = new SimpleDateFormat("dd MMMM yyyy");
+            String dateOutput = dateForm.format(new Date());
+            String scores = gamePrefs.getString("highScores", "");
+
+            List<Score> scoreStrings = new ArrayList<Score>();
+            String[] exScores = scores.split("\\|");
+            for(String eSc : exScores){
+                String[] parts = eSc.split(" - ");
+                scoreStrings.add(new Score(parts[0], Integer.parseInt(parts[1])));
+            }
+
+            Score newScore = new Score(dateOutput, exScore);
+            scoreStrings.add(newScore);
+            Collections.sort(scoreStrings);
+
+
+            StringBuilder scoreBuild = new StringBuilder("");
+            for(int s=0; s<scoreStrings.size(); s++){
+                if(s>=10) break;//only want ten
+                if(s>0) scoreBuild.append("|");//pipe separate the score strings
+                scoreBuild.append(scoreStrings.get(s).getScoreText());
+            }
+//write to prefs
+            scoreEdit.putString("highScores", scoreBuild.toString());
+            scoreEdit.commit();
+
+            if(scores.length()>0){
+                //we have existing scores
+            }
+            else{
+                //no existing scores
+                scoreEdit.putString("highScores", ""+dateOutput+" - "+exScore);
+                scoreEdit.commit();
+            }
+        }
+    }
+
+
+    public class Score implements Comparable<Score> {
+        private String scoreDate;
+        public int scoreNum;
+
+        public Score(String date, int num){
+            scoreDate=date;
+            scoreNum=num;
+        }
+
+        public int compareTo(Score sc){
+            //return 0 if equal
+            //1 if passed greater than this
+            //-1 if this greater than passed
+            return sc.scoreNum>scoreNum? 1 : sc.scoreNum<scoreNum? -1 : 0;
+        }
+
+        public String getScoreText()
+        {
+            return scoreDate+" - "+scoreNum;
+        }
+    }
+
+
+    int getScore(){
+        return gamescore;
     }
 
     @Override
@@ -286,6 +392,10 @@ public class FaceDetectionPluginActivity extends AppCompatActivity implements Cl
             image.clearAnimation();
             gamescore++;
 
+            //before the line in which the score textview is updated to zero to show that the user has entered a wrong answer
+
+//            setHighScore();
+
         }
         else{
             image.setVisibility(View.INVISIBLE);
@@ -295,4 +405,9 @@ public class FaceDetectionPluginActivity extends AppCompatActivity implements Cl
         flag = false;
 
     }
+
+//    protected void onDestroy(){
+//        setHighScore();
+//        super.onDestroy();
+//    }
 }

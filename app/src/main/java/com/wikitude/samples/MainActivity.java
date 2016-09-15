@@ -46,17 +46,21 @@ public class MainActivity extends AppCompatActivity {
 //    @Override
     public void onClick(View view) {
         if(view.getId()==R.id.play_btn){
+            //play button
             mp.stop();
             mp.release();
             mp1.start();
             final Intent intent1 = new Intent( this, FaceDetectionPluginActivity.class );
             startActivity(intent1);        }
         else if(view.getId()==R.id.help_btn){
+            //how to play button
             final Intent intent2 = new Intent(this, HelpActivity.class);
             startActivity(intent2);
         }
         else if(view.getId()==R.id.high_btn){
             //high scores button
+            final Intent intent3 = new Intent(this, HighScores.class);
+            startActivity(intent3);
         }
     }
 
